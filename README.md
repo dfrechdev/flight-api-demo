@@ -16,7 +16,7 @@ This will start the server on localhost, port 3000. To change the location or po
 
 ## Swagger UI
 
-The Swagger UI for the flight API can be access once the server has been started at http://localhost:3000/api. This shows all the routes and parameters available.
+The Swagger UI for the flight API can be access once the server has been started at http://localhost:3000/api. This shows all the available routes and parameters.
 
 ## Refresh the cashed data
 
