@@ -68,7 +68,8 @@ export class FlightsController {
                     (queryParam.visaYN
                         ? flight.route.visa ===
                           (queryParam.visaYN === 'Y' ? true : false)
-                        : true),
+                        : true) &&
+                    flight.prefixIATA,
             );
     }
 }

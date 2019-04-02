@@ -240,7 +240,7 @@ export class CacheController {
             "To date of search period (inclusive). Format: yyyy-MM-dd'T'HH:mm:ss",
         required: true,
     })
-    @ApiImplicitParam({
+    @ApiImplicitQuery({
         name: 'searchDateTimeField',
         description:
             'Query by a specific DateTime field. Allowed fields are estimatedLandingTime, actualLandingTime, publicEstimatedOffBlockTime, actualOffBlockTime, expectedTimeBoarding, expectedTimeGateClosing, expectedTimeGateOpen, expectedTimeOnBelt, scheduleDateTime. Defaults to scheduleDateTime if not provided',
@@ -258,11 +258,13 @@ export class CacheController {
             },
             params: {
                 page: 0,
-                sort: '+estimatedLandingTime',
+                sort:
+                    '+' + queryParams.searchDateTimeField ||
+                    '+scheduleDateTime',
                 includedelays: false,
-                flightDirection: 'A',
+                flightDirection: 'D',
                 searchDateTimeField:
-                    queryParams.searchDateTimeField || 'estimatedLandingTime',
+                    queryParams.searchDateTimeField || 'scheduleDateTime',
                 fromDateTime: queryParams.fromDateTime,
                 toDateTime: queryParams.toDateTime,
             },
