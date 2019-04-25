@@ -1,44 +1,16 @@
 import { Get, Controller, Query } from '@nestjs/common';
+import { QueryFlightsDto } from './QueryFlightsDto';
+import { ApiUseTags } from '@nestjs/swagger';
 import * as flights from '../cache/data/flights.data.json';
 import * as moment from 'moment';
-import {
-    ApiUseTags,
-    ApiImplicitParam,
-    ApiImplicitQuery,
-} from '@nestjs/swagger';
 
 @ApiUseTags('flights')
 @Controller('flights')
 export class FlightsController {
     @Get()
-    @ApiImplicitQuery({
-        name: 'flightDirection',
-        description:
-            'Direction of the flight. Indicates whether the commercial flight is a departure flight (D) or an arrival flight (A).',
-        required: false,
-    })
-    @ApiImplicitQuery({
-        name: 'serviceType',
-        description:
-            'Category of the commercial flight. J = Passenger Line, C= Passenger Charter, F = Freight Line and H = Freight Charter.',
-        required: false,
-    })
-    @ApiImplicitQuery({
-        name: 'terminal',
-        description: 'Terminal number. Can be terminal 1, 2, 3 or 4.',
-        required: false,
-    })
-    @ApiImplicitQuery({
-        name: 'routesEU',
-        description: '',
-        required: false,
-    })
-    @ApiImplicitQuery({
-        name: 'visaYN',
-        description: '',
-        required: false,
-    })
-    async findByDirection(@Query() queryParam): Promise<Object> {
+    async findByDirection(
+        @Query() queryParams: QueryFlightsDto,
+    ): Promise<Object> {
         return [...flights.flights]
             .sort((a, b) => {
                 const dateA = moment(
@@ -53,21 +25,21 @@ export class FlightsController {
             })
             .filter(
                 flight =>
-                    (queryParam.flightDirection
-                        ? flight.flightDirection === queryParam.flightDirection
+                    (queryParams.flightDirection
+                        ? flight.flightDirection === queryParams.flightDirection
                         : true) &&
-                    (queryParam.serviceType
-                        ? flight.serviceType === queryParam.serviceType
+                    (queryParams.serviceType
+                        ? flight.serviceType === queryParams.serviceType
                         : true) &&
-                    (queryParam.terminal
-                        ? flight.terminal == queryParam.terminal
+                    (queryParams.terminal
+                        ? flight.terminal == queryParams.terminal
                         : true) &&
-                    (queryParam.routesEU
-                        ? flight.route.eu === queryParam.routesEU
+                    (queryParams.routesEU
+                        ? flight.route.eu === queryParams.routesEU
                         : true) &&
-                    (queryParam.visaYN
+                    (queryParams.visaYN
                         ? flight.route.visa ===
-                          (queryParam.visaYN === 'Y' ? true : false)
+                          (queryParams.visaYN === 'Y' ? true : false)
                         : true) &&
                     flight.prefixIATA,
             );
