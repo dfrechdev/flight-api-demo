@@ -18,16 +18,16 @@ This will start the server on localhost, port 3000. To change the location or po
 
 The Swagger UI for the flight API can be access once the server has been started at http://localhost:3000/api. This shows all the available routes and parameters.
 
-## Refresh the cashed data
+## Refreshing cashed data
 
-This API allows you to cache results from the Schipol Flight API for your demo purposes as needed. In order to use the caching functionality, you must have an active account with the Schipol flight API. Visit https://developer.schiphol.nl/signup to create an account and start using the API.
+This API allows you to cache results from the Schipol Flight API for your demo purposes as needed. In order to use the caching functionality and cache new data, you must have an active account with the Schipol flight API. Visit https://developer.schiphol.nl/signup to create an account and start using the API.
 
-Once you have a valid API key, add two systems variables on your machine where the flight API should be running:
+Once you have a valid API key, add two systems variables on the machine where the flight API runs:
 
 -   FLIGHT_API_APP_ID - this is the app ID of your Schipol Flight API
 -   FLIGHT_API_APP_KEY - this is your app key of your Schipol Flight API
 
-Once set, you can call the cache routes and fill your API with new data
+Once set, you can call the cache routes to refresh the cache of your API with new data.
 
 Tip: Check "npm run env" to see if your credentials are available to node. You might have to restart your command line or IDE in order to have them available after setting them.
 
