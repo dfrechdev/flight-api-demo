@@ -24,7 +24,7 @@
         "@nestjs/core": "^6.8.2",
         "@nestjs/platform-express": "^6.8.2",
         "@nestjs/swagger": "^3.1.0",
-        "axios": "^0.18.1",
+        "axios": "^0.21.1",
         "cypress": "^3.4.1",
         "moment": "^2.24.0",
         "reflect-metadata": "^0.1.12",
